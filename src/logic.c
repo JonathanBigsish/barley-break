@@ -31,7 +31,7 @@ void swapvalues(int* arr, int x, int y)
 	arr[y] = sv;
 }
 
-int mask_build(int* arr, int* mask)
+int search_zero(int* arr)
 {
 	int zero_pos = 0;
 
@@ -39,30 +39,6 @@ int mask_build(int* arr, int* mask)
 		zero_pos++;
 	}
 
-	if (zero_pos < 4) {
-		mask[2] = 0;
-	} else {
-		mask[2] = 1;
-	} 
-
-	if (zero_pos > 11) {
-		mask[1] = 0;
-	} else {
-		mask[1] = 1;
-	} 
-	
-	if (zero_pos != 0 && (zero_pos + 1) % 4 == 0) {
-		mask[3] = 0;
-	} else {
-		mask[3] = 1;
-	} 
-	
-	if (zero_pos == 0 || zero_pos % 4 == 0) {
-		mask[0] = 0;
-	} else {
-		mask[0] = 1;
-	}
- 
 	return zero_pos;
 }
 
