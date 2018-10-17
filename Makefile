@@ -17,5 +17,24 @@ build/logic.o: src/logic.c src/logic.h
 	mkdir build -p
 	gcc -Wall -c src/logic.c -o build/logic.o
 
+test: bin/barley-break-test
+
+bin/barley-break-test: build/src/logic.o build/test/main.o build/test/combination_test.o build/test/out_edge_test.o
+	mkdir bin -p
+	gcc -std=c99 -I thirdparty -I src -Wall build/src/logic.o build/test/main.o build/test/combination_test.o build/test/out_edge_test.o -o bin/barley-break-test
+	bin/barley-break-test
+
+build/test/main.o: test/main.c
+	mkdir build/test -p
+	gcc -std=c99 -I thirdparty -I src -Wall -c test/main.c -o build/test/main.o
+
+build/test/combination_test.o: test/combination_test.c
+	mkdir build/test -p
+	gcc -std=c99 -I thirdparty -I src -Wall -c test/combination_test.c -o build/test/combination_test.o
+
+build/test/out_edge_test.o: test/out_edge_test.c
+	mkdir build/test -p
+	gcc -std=c99 -I thirdparty -I src -Wall -c test/out_edge_test.c -o build/test/out_edge_test.o
+
 clean:
 	rm -rf build/* bin/*
