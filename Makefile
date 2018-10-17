@@ -8,15 +8,15 @@ bin/barley-break: build/src/main.o build/src/graphics.o build/src/logic.o src/gr
 
 build/src/main.o: src/main.c src/graphics.h src/logic.h
 	mkdir build/src -p
-	gcc -I scr -Wall -c src/main.c -o build/src/main.o
+	gcc -std=c99 -I scr -Wall -c src/main.c -o build/src/main.o
 
 build/src/graphics.o: src/graphics.c src/graphics.h
 	mkdir build/src -p
-	gcc -Wall -c src/graphics.c -o build/src/graphics.o
+	gcc -std=c99 -Wall -c src/graphics.c -o build/src/graphics.o
 
 build/src/logic.o: src/logic.c src/logic.h
 	mkdir build/src -p
-	gcc -Wall -c src/logic.c -o build/src/logic.o
+	gcc -std=c99 -Wall -c src/logic.c -o build/src/logic.o
 
 test: bin/barley-break-test
 
