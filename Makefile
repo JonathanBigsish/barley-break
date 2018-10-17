@@ -1,8 +1,8 @@
 .PHONY: all clean
 
-all: barley-break
+all: bin/barley-break
 
-15_puzzle: build/main.o build/graphics.o build/logic.o src/graphics.h src/logic.h
+bin/barley-break: build/main.o build/graphics.o build/logic.o src/graphics.h src/logic.h
 	gcc -Wall build/main.o build/graphics.o build/logic.o -o barley-break -lncurses
 
 build/main.o: src/main.c src/graphics.h src/logic.h
@@ -18,4 +18,4 @@ build/logic.o: src/logic.c src/logic.h
 	gcc -Wall -c src/logic.c -o build/logic.o
 
 clean:
-	rm -rf build/* build/* barley-break*
+	rm -rf build/* bin/*
