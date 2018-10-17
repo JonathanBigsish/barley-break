@@ -135,3 +135,12 @@ int check_victory(int *arr)
 		return 1;
     }
 }
+
+int check_solvency(int* arr)
+{
+    if (count_couple(arr) % 2 == 0) {
+		return 0;
+    } else {
+		return 1;
+    }
+}

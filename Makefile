@@ -2,27 +2,27 @@
 
 all: bin/barley-break
 
-bin/barley-break: build/main.o build/graphics.o build/logic.o src/graphics.h src/logic.h
-	gcc -Wall build/main.o build/graphics.o build/logic.o -o barley-break -lncurses
+bin/barley-break: build/src/main.o build/src/graphics.o build/src/logic.o src/graphics.h src/logic.h
+	mkdir bin -p
+	gcc -Wall build/src/main.o build/src/graphics.o build/src/logic.o -o barley-break -lncurses
 
-build/main.o: src/main.c src/graphics.h src/logic.h
-	mkdir build -p
-	gcc -I scr -Wall -c src/main.c -o build/main.o
+build/src/main.o: src/main.c src/graphics.h src/logic.h
+	mkdir build/src -p
+	gcc -I scr -Wall -c src/main.c -o build/src/main.o
 
-build/graphics.o: src/graphics.c src/graphics.h
-	mkdir build -p
-	gcc -Wall -c src/graphics.c -o build/graphics.o
+build/src/graphics.o: src/graphics.c src/graphics.h
+	mkdir build/src -p
+	gcc -Wall -c src/graphics.c -o build/src/graphics.o
 
-build/logic.o: src/logic.c src/logic.h
-	mkdir build -p
-	gcc -Wall -c src/logic.c -o build/logic.o
+build/src/logic.o: src/logic.c src/logic.h
+	mkdir build/src -p
+	gcc -Wall -c src/logic.c -o build/src/logic.o
 
 test: bin/barley-break-test
 
 bin/barley-break-test: build/src/logic.o build/test/main.o build/test/combination_test.o build/test/out_edge_test.o
 	mkdir bin -p
 	gcc -std=c99 -I thirdparty -I src -Wall build/src/logic.o build/test/main.o build/test/combination_test.o build/test/out_edge_test.o -o bin/barley-break-test
-	bin/barley-break-test
 
 build/test/main.o: test/main.c
 	mkdir build/test -p
