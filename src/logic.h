@@ -13,4 +13,10 @@ int mask_build(int* arr, int* mask);
 
 int check_board(int* arr);
 
+int find_zero_pos(int* arr);
+
+int count_couple(int* arr);
+
+int check_victory(int* arr);
+
 #endif
