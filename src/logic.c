@@ -12,6 +12,7 @@ int* create_array(size_t size)
 
 int* filling_array()
 {
+
 	size_t size = 16;
 
 	int* arr = create_array(size);
@@ -19,7 +20,14 @@ int* filling_array()
 	for (int i = 0; i < size; i++) {
 		arr[i] = i;
 	}
+/*
+	for (int i = 0; i < size; i++) {
+		arr[i] = i + 1;
+	}
 
+	arr[14] = 0;
+	arr[15] = 15;
+*/
 	return arr;
 }
 
@@ -31,7 +39,7 @@ void swapvalues(int* arr, int x, int y)
 	arr[y] = sv;
 }
 
-int search_zero(int* arr)
+int mask_build(int* arr, int* mask)
 {
 	int zero_pos = 0;
 
@@ -39,6 +47,30 @@ int search_zero(int* arr)
 		zero_pos++;
 	}
 
+	if (zero_pos < 4) {
+		mask[2] = 0;
+	} else {
+		mask[2] = 1;
+	} 
+
+	if (zero_pos > 11) {
+		mask[1] = 0;
+	} else {
+		mask[1] = 1;
+	} 
+	
+	if (zero_pos != 0 && (zero_pos + 1) % 4 == 0) {
+		mask[3] = 0;
+	} else {
+		mask[3] = 1;
+	} 
+	
+	if (zero_pos == 0 || zero_pos % 4 == 0) {
+		mask[0] = 0;
+	} else {
+		mask[0] = 1;
+	}
+ 
 	return zero_pos;
 }
 
@@ -55,4 +87,17 @@ void randomize_board(int* arr)
 		arr[a] = arr[b];
 		arr[b] = c;
 	}
+}
+
+int check_board(int* arr)
+{
+	for (int i = 0; i < 16; i++) {
+		if (i != 15 && arr[i] != i + 1) {
+			return 0;
+		} else if (i == 15 && arr[i] != 0) {
+			return 0;
+		}
+	}
+
+	return 1;
 }
