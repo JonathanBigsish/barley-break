@@ -1,11 +1,12 @@
-#include "ncurses.h"
+#include <ncurses.h>
+#include "graphics.h"
 
 int main()
-{
+{  
 	initscr();
-	printw("MOM, I'M A PROGRAMER!\n");
-	refresh();
-	getch();
-	endwin();
-	return 0;
+	noecho();
+//	curs_set(FALSE);
+	create_colrow_window(stdscr);
+	getch();   
+   	endwin();
 }
